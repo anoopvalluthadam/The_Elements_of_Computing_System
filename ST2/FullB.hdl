@@ -1,0 +1,11 @@
+CHIP FullB
+{
+	IN a,b,cin;
+	OUT  sum,carry;
+	PARTS:
+	Xor(a=a,b=b,out=out1);
+	Xor(a=out1,b=cin,out=sum);
+	And(a=out1,b=cin,out=out2);
+	And(a=a,b=b,out=out3);
+	Or(a=out2,b=out3,out=carry);
+}

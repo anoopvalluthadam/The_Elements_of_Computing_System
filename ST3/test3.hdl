@@ -1,0 +1,11 @@
+CHIP test3
+{
+	IN in[16],a1[16],b1[16],c1[16],d1[16],e1[16],f1[16],g1[16],h1[16],sel[3];
+	OUT out[16];
+	PARTS:
+	
+
+	Mux8Way16(a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1,sel=sel,out=out);
+
+
+}

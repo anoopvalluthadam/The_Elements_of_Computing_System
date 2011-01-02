@@ -1,0 +1,41 @@
+CHIP test
+{
+	IN in[16],sel[3];
+	OUT out[16];
+	PARTS:
+	DMux8Way(in=in[0],sel=sel,a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1);
+
+	DMux8Way(in=in[1],sel=sel,a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1);
+
+	DMux8Way(in=in[2],sel=sel,a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1);
+
+	DMux8Way(in=in[3],sel=sel,a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1);
+`
+	DMux8Way(in=in[4],sel=sel,a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1);
+
+	DMux8Way(in=in[5],sel=sel,a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1);
+
+	DMux8Way(in=in[6],sel=sel,a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1);
+
+	DMux8Way(in=in[7],sel=sel,a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1);
+
+	DMux8Way(in=in[8],sel=sel,a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1);
+
+	DMux8Way(in=in[9],sel=sel,a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1);
+
+	DMux8Way(in=in[10],sel=sel,a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1);
+
+	DMux8Way(in=in[11],sel=sel,a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1);
+
+	DMux8Way(in=in[12],sel=sel,a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1);
+
+	DMux8Way(in=in[13],sel=sel,a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1);
+
+	DMux8Way(in=in[14],sel=sel,a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1);
+
+	DMux8Way(in=in[15],sel=sel,a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1);
+
+	Mux8Way16(a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1,sel=sel,out=out);
+
+
+}

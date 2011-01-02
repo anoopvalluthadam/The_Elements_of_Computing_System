@@ -1,0 +1,12 @@
+CHIP test
+{
+	IN in[2],sel[3];
+	OUT out[2];
+	PARTS:
+	DMux8Way(in=in[0],sel=sel,a=a1,b=b1,c=c1,d=d1,e=e1,f=f1,g=g1,h=h1);
+
+	DMux8Way(in=in[1],sel=sel,a=a2,b=b2,c=c2,d=d2,e=e2,f=f2,g=g2,h=h2);
+
+	Mux()
+
+}

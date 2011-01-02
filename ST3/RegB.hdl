@@ -1,0 +1,8 @@
+CHIP RegB
+{
+	IN a,b,load;
+	OUT out;
+	PARTS:
+	Mux(a=a,b=out,sel=sel,out=out1);
+	DFF(in=out1,out=out);
+}

@@ -1,0 +1,22 @@
+	@i
+	M=1
+	@res
+	M=0
+(LOOP)
+	@i
+	D=M
+	@30
+	D=M-D
+	@END
+	D,JLT
+	@31
+	D=M
+	@res
+	M=D+M
+	@i
+	M=M+1
+	@LOOP
+	0,JMP
+(END)
+	@END
+	0,JMP

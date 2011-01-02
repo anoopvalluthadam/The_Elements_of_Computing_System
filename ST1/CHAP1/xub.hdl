@@ -1,0 +1,11 @@
+CHIP xub
+{
+	IN a,b;
+	OUT out;
+	PARTS:
+	Not(in=a,out=out1);
+	Not(in=b,out=out2);
+	And(a=out1,b=b,out=out3);
+	And(a=a,b=out2,out=out4);
+	Or(a=out3,b=out4,out=out);
+}

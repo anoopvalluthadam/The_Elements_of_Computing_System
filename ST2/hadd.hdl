@@ -1,0 +1,7 @@
+CHIP hadd
+{
+	IN a,b;
+	OUT sum,carry;
+	PARTS:
+	HalfAdder(a=a,b=b,sum=sum,carry=carry);
+}

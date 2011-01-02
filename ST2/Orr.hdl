@@ -1,0 +1,10 @@
+ CHIP Orr{
+	IN a[16],b[16],sel;
+	OUT outt[16];
+	PARTS:
+	Mux16(a=a,b=b,sel=sel,out=outt);
+	Or8Way(in=outt[0..7],out=orout1);
+	Or8Way(in=outt[8..15],out=orout2);
+	Or(a=orout1,b=orout2,out=outt);
+	Not(in=outt,out=out);
+}

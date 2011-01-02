@@ -1,0 +1,19 @@
+CHIP MuxB
+{
+  IN a,b,c,d,s0,s1;
+  OUT out;
+  PARTS:
+  Not(in=s1,out=out1);
+  Not(in=s0,out=out2);
+  And(a=s1,b=s0,out=out3);
+  And(a=out1,b=s0,out=out4);
+  And(a=s1,b=out2,out=out5);
+  And(a=out1,b=out2,out=out6);
+  And(a=a,b=out6,out=out7);
+  And(a=b,b=out5,out=out8);
+  And(a=c,b=out4,out=out9);
+  And(a=d,b=out3,out=out10);
+  Or(a=out7,b=out8,out=out11);
+  Or(a=out9,b=out10,out=out12);
+  Or(a=out11,b=out12,out=out);
+}

@@ -1,0 +1,44 @@
+CHIP Alu1
+{
+    	IN x[16],y[16], zx,nx,zy,ny,f,no; 
+
+	OUT out[16],zr,ng;
+
+	PARTS:
+    	Mux16(a=x,b=false,sel=zx,out=out1);
+	
+	Not16(in=out1,out=nout1);
+	Mux16(a=out1,b=nout1,sel=nx,out=out2);
+
+	Mux16(a=y,b=false,sel=zy,out=out3);
+
+	Not16(in=out3,out=nout2);
+	Mux16(a=out3,b=nout2,sel=ny,out=out4);
+
+	
+	Add16(a=out2,b=out4,out=outxy);
+	
+	And16(a=out2,b=out4,out=outxay);
+	
+	Mux16(a=outxay,b=outxy,sel=f,out=out7);
+
+	Not16(in=out7,out=out8);
+		
+	Mux16(a=out7,b=out8,sel=no,out=out,out[15]=ng,out[0]=fst,out[1]=snd,out[2]=thrd,out[3]=fth,out[4]=fif,out[5]=six,out[6]=sev,out[7]=eig,out[8]=nin,out[9]=ten,out[10]=el,out[11]=tw,out[12]=thir,out[13]=fourt,out[14]=fift,out[15]=sixt);
+	Or(a=fst,b=snd,out=Oout1);
+	Or(a=Oout1,b=thrd,out=Oout2);
+	Or(a=Oout2,b=fth,out=Oout3);
+	Or(a=Oout3,b=fif,out=Oout4);
+	Or(a=Oout4,b=six,out=Oout5);	
+	Or(a=Oout5,b=sev,out=Oout6);
+	Or(a=Oout6,b=eig,out=Oout7);
+	Or(a=Oout7,b=nin,out=Oout8);
+	Or(a=Oout8,b=ten,out=Oout9);
+	Or(a=Oout9,b=el,out=Oout10);
+	Or(a=Oout10,b=tw,out=Oout11);
+	Or(a=Oout11,b=thir,out=Oout12);
+	Or(a=Oout12,b=fourt,out=Oout13);
+	Or(a=Oout13,b=fift,out=Oout14);
+	Or(a=Oout14,b=sixt,out=Oout15);
+	Mux(a=true,b=false,sel=Oout15,out=zr);
+}

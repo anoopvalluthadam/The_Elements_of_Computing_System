@@ -1,0 +1,7 @@
+CHIP md
+{
+	IN a,b,sel;
+	OUT out;
+	PARTS:
+	Mux(a=a,b=b,sel=sel,out=out);
+}
