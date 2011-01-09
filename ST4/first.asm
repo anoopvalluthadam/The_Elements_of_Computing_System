@@ -4,9 +4,9 @@
 	M=0
 (LOOP)
 	@i
-	D=M
-	@5
-	D=D-A
+	D = M
+	@ 5
+	D= D - A
 	@END
 	D,JGT
 	@i
@@ -16,7 +16,7 @@
 	@i
 	M=M+1
 	@LOOP
-	0;JMP
+	0,JMP
 (END)
 	@END
 	0,JMP	

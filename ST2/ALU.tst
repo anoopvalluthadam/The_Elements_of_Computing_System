@@ -3,7 +3,7 @@
 // MIT Press. Book site: www.idc.ac.il/tecs
 // File name: projects/02/ALU.tst
 
-load Alu1.hdl,
+load Alu2.hdl,
 output-file ALU.out,
 compare-to ALU.cmp,
 output-list x%B1.16.1 y%B1.16.1 zx%B1.1.1 nx%B1.1.1 zy%B1.1.1 
