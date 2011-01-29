@@ -109,18 +109,16 @@ def make_binary(str, command, count):
                         flag = 2
                         return 
             if flag == 0:
-                #print '========>',variable
                 if len(variable) == 0:
                     variable_add(integer[1])
                 else:
                     for ch in variable:
-                        #print "===========>ch-",ch,"========>integer[1]",integer[1] 
+               
                         if ch == integer[1]:
                             flag == 3
                             convert_int_to_bin(variable[integer[1]])
                             return 
                     if flag == 0:
-                            #print "==================>variable add<======================"
                             variable_add(integer[1])   
 def binary_generation(ch, a):
     if a == '0':
@@ -171,6 +169,6 @@ def variable_add(var):
         variable[var] = vcount[-1] + 1
         vcount.append(variable[var])
         convert_int_to_bin(variable[var])
-        #print vcount
+
 
 

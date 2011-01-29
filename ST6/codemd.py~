@@ -1,4 +1,5 @@
 vcount = [15]
+lcount = [1]
 sixt = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0']
 azcomp = {"0" : "101010", "1" : "111111", "-1" : "111010", 
             "D" : "001100", "A" : "110000", "!D" : "001101", "!A" : "110001", 
@@ -52,14 +53,8 @@ def a_value_checking(zcomp, list, ocomp):
                
 
 def convert_binary(str, command, count,vfcount):
-    list = []
-    zcomp = []
-    zcomp = azcomp.keys()    
-    ocomp = aocomp.keys()
-    scommand1 = []
-    scommand2 = []
+
     if vfcount == 0:
-        print command
         make_symboltable(str, command, count)
     else:
         make_binary(str, command, count)
@@ -69,10 +64,18 @@ def make_symboltable(str, command, count):
     
     if str == "L_COMMAND":
         lp = command[1 : -1]    
-        loop[lp] = count 
+        loop[lp] = count - lcount[-1]
+        lcount.append(lcount[-1]+1)
 
 def make_binary(str, command, count):
+    #print command
     flag = 0
+    list = []
+    zcomp = []
+    zcomp = azcomp.keys()    
+    ocomp = aocomp.keys()
+    scommand1 = []
+    scommand2 = []
     if str == "C_COMMAND":
         scommand1 = command.split('=')
         scommand2 = command.split(';')
@@ -98,20 +101,24 @@ def make_binary(str, command, count):
                 if ch == integer[1]:
                     flag = 1
                     convert_int_to_bin(symbols[integer[1]]) 
-            if flag != 1:
+                    return
+            if flag == 0:
                 for ch in loop:
                     if integer[1] == ch:
                         convert_int_to_bin(loop[integer[1]])
                         flag = 2
-            if flag != 2 and flag != 1:
+                        return 
+            if flag == 0:
                 if len(variable) == 0:
                     variable_add(integer[1])
                 else:
                     for ch in variable:
+               
                         if ch == integer[1]:
                             flag == 3
                             convert_int_to_bin(variable[integer[1]])
-                    if flag != 3:
+                            return 
+                    if flag == 0:
                             variable_add(integer[1])   
 def binary_generation(ch, a):
     if a == '0':
@@ -140,6 +147,7 @@ def to_file():
     list = ''.join(sixt)
     print list
 def convert_int_to_bin(line):
+    init_sixt()
     n = line
     bstr = ''
     while n > 0:
@@ -157,12 +165,10 @@ def convert_int_to_bin(line):
 
 def variable_add(var):
     flag = 1
-    for val in loop:
-        if var == val:
-            flag = 0
-    if flag ==1:
+    if flag == 1:
         variable[var] = vcount[-1] + 1
         vcount.append(variable[var])
         convert_int_to_bin(variable[var])
+        #print vcount
 
 

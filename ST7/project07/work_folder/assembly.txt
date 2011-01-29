@@ -1,0 +1,33 @@
+###########################Pop a value according to segment####################################
+#pop local 10
+def pop_local_assembly():
+    @10
+    D=A
+    @LCL
+    D=D+M
+    @R6
+    M=D
+    @SP
+    AD=M
+    @R6
+    A=M
+    M=D
+    @SP
+    M=M-1
+    
+#############################PUSH a value according to segment##################################
+#push Local 10
+def push_local_assembly()
+    @10
+    D=A
+    @LCL
+    D=D+M //Now D holds the  address to which we have to fetch the value for push operation
+    A=D //Now M holds the value to push
+    D=M //Temporary storing
+    @SP
+    A=M
+    M=D
+    
+    
+    
+    

@@ -1,0 +1,45 @@
+import tokanizer
+import sys
+
+def print_token(token, t_type):
+#print token
+    if token == '<':
+        token = '&lt;'
+    print '<' + t_type +'>' + ' ' +token + ' ' + '</'+ t_type + '>'
+
+def class_method():
+#Class Declaration, Grammer:  'class' className '{' classVarDec* subroutineDec* '}'
+    print '<class>'
+    token = tokanizer.next_token()
+    if token[1] == 'class':
+        print_token(token, t_type)
+    token = tokanizer.next_token()
+    if token[1] == 'identifier':
+        print_token(token[0], token[1])
+    token = tokanizer.next_token()
+    if token[0] == '{':
+        print_token(token[0], token[1])
+        token = tokanizer.next_token()
+        token = class_body(token)
+        token = tokanizer.next_token()
+    if token[0] == '}':
+        print_token(token[0], token[1])
+    print '</class>'  
+
+def class_body(token):
+#Body of a class Method
+    if token[0] == 'static' or token[0] == 'field':
+        """while token[0] == 'static' or token[0] == 'field':
+            print_token(token[0], token[1])
+            token = class_var_dec(token, tokanized_pgm)
+            token = next_token(tokanized_pgm)"""
+    if token[0] == 'constructor' or token[0] == 'function' or token[0] == 'method' or token[0] == 'void':
+        while token[0] == 'constructor' or token[0] == 'function' or token[0] == 'method' or token[0] == 'void':
+            #token = subroutine_dec(token)
+            print 'subroutine_call'
+            token = tokanizer.next_token()
+    return token
+
+file_path = sys.argv[1]
+tokanizer.tokanizer(file_path)
+class_method()

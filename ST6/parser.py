@@ -1,15 +1,9 @@
-
 #Sourse code parsing
-
 
 import re
 import codemd 
 
-"""
-Module which translate Assembly Mnemonics in to machine code
-"""
-
-
+#Module which translate Assembly Mnemonics in to machine code
 def remove_whspace(command):
     str = ''
     for ch in command.split():
@@ -18,6 +12,7 @@ def remove_whspace(command):
 
 
 class  Parser:
+
     def __init__ (self, file):
         count = 1
         f = open (file, 'rU')
@@ -38,8 +33,7 @@ class  Parser:
                 binary=codemd.convert_binary(str, command, count, i)
                 count = count + 1
             i = i + 1
-        
-         
+                 
     def commandtype(self, command):
         
         #This helps to find the type of a command
@@ -51,5 +45,4 @@ class  Parser:
         if command[0] == '(':
             return "L_COMMAND"
     
-
-p=Parser("/home/gabriel/input.asm")
+p=Parser("Pong.asm")
