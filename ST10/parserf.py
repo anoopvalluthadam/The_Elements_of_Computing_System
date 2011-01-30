@@ -35,14 +35,35 @@ def class_method():
 def class_body(token):
 #Body of a class Method
     if token[0] == 'static' or token[0] == 'field':
-        """while token[0] == 'static' or token[0] == 'field':
-            print_token(token[0], token[1])
-            token = class_var_dec(token, tokanized_pgm)
-            token = next_token(tokanized_pgm)"""
+        while token[0] == 'static' or token[0] == 'field':
+            token = class_var_dec(token)
+            token = tokanizer.next_token()
     if token[0] == 'constructor' or token[0] == 'function' or token[0] == 'method' or token[0] == 'void':
         while token[0] == 'constructor' or token[0] == 'function' or token[0] == 'method' or token[0] == 'void':
             token = subroutine_dec(token)
             token = tokanizer.next_token()
+    return token
+
+def class_var_dec(token):
+#Class variable Declaration, Grammer: ('static' | 'field' ) type varName (',' varName)* ';'
+    print '<classVarDec>'
+    print_token(token[0], token[1])
+    token = tokanizer.next_token()
+    if token[0] == basic_type(token) or token[1] == 'identifier':
+        print_token(token[0], token[1])
+        token = tokanizer.next_token()
+        if token[1] == 'identifier':
+            print_token(token[0], token[1])
+            token = tokanizer.next_token()
+            while token[0] == ',':
+                print_token(token[0], token[1])
+                token = tokanizer.next_token()
+                if token[1] == 'identifier':
+                    print_token(token[0], token[1])
+                    token = tokanizer.next_token()
+            if token[0] == ';':
+                print_token(token[0], token[1])
+    print '</classVarDec>'
     return token
 
 def subroutine_dec(token):
@@ -245,9 +266,52 @@ def return_statement(token):
     token = tokanizer.next_token()
     if token[0] != ';':
         token = expression(token)
+        token = tokanizer.next_token()
     if token[0] == ';':
         print_token(token[0], token[1])
     print '</returnStatement>'
+    return token
+
+def if_statement(token):
+#if statement, Grammer: 'if' '(' expression ')' '{' statements '}'
+    print '<ifStatement>'
+    print_token(token[0], token[1])
+    token = tokanizer.next_token()
+    if token[0] == '(':
+        print_token(token[0], token[1])
+        token = tokanizer.next_token()
+        if token[0] != ')':
+            token = expression(token)
+            token = tokanizer.next_token()
+        if token[0] == ')':
+            token = if_statement_inner_part(token)
+    print '</ifStatement>'
+    return token
+
+def if_statement_inner_part(token):
+#if statement inner part 
+    print_token(token[0], token[1])
+    token = tokanizer.next_token()
+    if token[0] == '{':
+        print_token(token[0], token[1])
+        token = tokanizer.next_token()
+        if token[0] != '}':
+            token = statements(token)
+            #token = tokanizer.next_token()
+        if token[0] == '}':
+            print_token(token[0], token[1])
+            #token = tokanizer.next_token()
+        if token[0] == 'else':
+            print_token(token[0], token[1])
+            token = tokanizer.next_token()
+            if token[0] == '{':
+                print_token(token[0], token[1])
+                token = tokanizer.next_token()
+            if token[0] != '}':
+                token = statements(token)
+                token = tokanizer.next_token()
+            if token[0] == '}':
+                print_token(token[0], token[1])
     return token
 
 def term(token):
@@ -255,6 +319,8 @@ def term(token):
     print '<term>'
     if token[1] == 'integerConstant' or token[1] == 'stringConstant':
         print_token(token[0], token[1]) 
+    if token[1] == 'keyword':
+        print_token(token[0], token[1])
     if token[1] == 'identifier':
         tmp_token = tokanizer.next_token_temp()
         if tmp_token[0] != '.' and tmp_token[0] != '(' and tmp_token[0] != '[':
